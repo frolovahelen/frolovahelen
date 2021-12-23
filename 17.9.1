@@ -1,0 +1,29 @@
+def sort(num_list):
+    N = len(num_list)
+    for run in range(N - 1):
+        for i in range(N - 1 - run):
+            # print(f"сравниваем {num_list[i]} с {num_list[i+1]}")
+            if num_list[i] > num_list[i + 1]:
+                num_list[i], num_list[i + 1] = num_list[i + 1], num_list[i]
+    return num_list
+
+
+def binary_search(num_list, element):
+    min_list = min(num_list)
+    max_list = max(num_list)
+    middle = (min_list + max_list) // 2
+    if num_list[middle-1] == element:
+        return middle - 1
+    elif num_list[middle] > element:
+        return binary_search(num_list, element, min_list, middle - 1)
+    else:
+        return binary_search(num_list, element, middle + 1, max_list)
+
+def len_list(x):
+    list_ = len(sort(x))
+    return list_-1
+
+inter = input('Введите список чисел, разделенных пробелом: ').split()
+inter = sort(list(map(int, inter)))
+element = int(input("Введите любое число: "))
+binary_search = input(binary_search(inter, element))
